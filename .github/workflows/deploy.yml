@@ -15,6 +15,7 @@ jobs:
   deploy:
     if: vars.DEPLOY_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    environment: production
     env:
       BUILD_DIR: dist
     steps:
@@ -40,9 +41,9 @@ jobs:
           DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '--dry-run' || '' }}
         run: |
           install -m 700 -d ~/.ssh
-          printf '%s\n' "$NC_SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
-          printf '%s\n' "$NC_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          rsync -rlvz --delete --chmod=D755,F644 $DRY \
+          printf '%s\n' "$NC_SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$NC_KNOWN_HOSTS" | tr -d '\r' > ~/.ssh/known_hosts
+          rsync -rlvz --delete $DRY \
             --exclude '.ftpquota' --exclude '.well-known/' --exclude 'cgi-bin/' --exclude '.user.ini' --exclude 'error_log' \
-            -e "ssh -i ~/.ssh/deploy_key -p $NC_PORT" \
-            "$BUILD_DIR"/ "$NC_USER@$NC_HOST:public_html/"
+            -e "ssh -i ~/.ssh/deploy_key -p $NC_PORT -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+            "$BUILD_DIR"/ "$NC_USER@$NC_HOST:/"
