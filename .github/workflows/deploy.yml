@@ -1,0 +1,48 @@
+name: Deploy to Namecheap
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "List changes only, do not upload"
+        type: boolean
+        default: true
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: vars.DEPLOY_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      BUILD_DIR: dist
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Check build output
+        run: |
+          test -f "$BUILD_DIR/index.html"
+          test -f "$BUILD_DIR/.htaccess"
+          test -f "$BUILD_DIR/api/contact.php"
+      - name: Upload to Namecheap
+        env:
+          NC_HOST: ${{ secrets.NC_HOST }}
+          NC_PORT: ${{ secrets.NC_PORT }}
+          NC_USER: ${{ secrets.NC_USER }}
+          NC_SSH_KEY: ${{ secrets.NC_SSH_KEY }}
+          NC_KNOWN_HOSTS: ${{ secrets.NC_KNOWN_HOSTS }}
+          DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '--dry-run' || '' }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$NC_SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$NC_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          rsync -rlvz --delete --chmod=D755,F644 $DRY \
+            --exclude '.ftpquota' --exclude '.well-known/' --exclude 'cgi-bin/' --exclude '.user.ini' --exclude 'error_log' \
+            -e "ssh -i ~/.ssh/deploy_key -p $NC_PORT" \
+            "$BUILD_DIR"/ "$NC_USER@$NC_HOST:public_html/"
