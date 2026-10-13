@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import reefLogoPath from "@/assets/reef-logo.png";
+import reefLogoPath from "@/assets/reef-logo-borderless.png";
 
 const NAV_LINKS = [
   { name: "About", href: "#about" },
@@ -52,11 +52,11 @@ export function Navbar() {
               />
             </div>
             <span
-              className={`font-heading font-bold text-xl tracking-tight ${
-                isScrolled ? "text-primary" : "text-primary md:text-white"
+              className={`font-heading font-bold text-sm leading-tight tracking-tight max-w-[180px] ${
+                isScrolled || mobileMenuOpen ? "text-primary" : "text-white"
               }`}
             >
-              REEF
+              Roundtable of Entrepreneurship Educators of Florida
             </span>
           </Link>
 

@@ -1,26 +1,26 @@
 import { Link } from "wouter";
-import { ArrowLeft, Compass } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="min-h-[80vh] w-full flex items-center justify-center bg-background px-4">
-      <div className="text-center max-w-md">
-        <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
-          <Compass className="w-10 h-10 text-primary" />
-        </div>
-        <h1 className="font-heading text-5xl font-black text-primary mb-4">404</h1>
-        <h2 className="text-xl font-semibold text-foreground mb-3">Page Not Found</h2>
-        <p className="text-muted-foreground mb-8">
-          The page you're looking for doesn't exist or has been moved. Let's get you back on course.
+    <section className="flex min-h-[70vh] items-center justify-center bg-primary px-4 pt-32 pb-20 text-center text-white">
+      <div className="max-w-xl">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/70">Error 404</p>
+        <h1 className="font-heading text-4xl font-bold md:text-5xl">Page not found</h1>
+        <p className="mt-4 text-lg text-white/85">
+          The page you&apos;re looking for doesn&apos;t exist or may have moved.
         </p>
-        <Button asChild className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 h-12">
+        <Button
+          asChild
+          className="mt-8 h-12 rounded-full bg-white px-8 font-bold text-primary hover:bg-white/90"
+        >
           <Link href="/">
-            <ArrowLeft className="mr-2 w-4 h-4" />
-            Back to Home
+            <ArrowLeft className="mr-2 h-5 w-5" aria-hidden="true" />
+            Back to home
           </Link>
         </Button>
       </div>
-    </div>
+    </section>
   );
 }
