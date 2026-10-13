@@ -100,7 +100,7 @@ $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
 $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
 // Build email
-$to = 'socials@reef.center';
+$to = 'gavinturtle2@outlook.com, greg.desrosiers@gmail.com';
 $subject = 'REEF Website Inquiry' . ($name ? " from $name" : '');
 
 $body = "New inquiry from the REEF website contact form:\n\n";
