@@ -20,4 +20,4 @@ The build goes to `dist/`, including `.htaccess` and `api/contact.php` from `pub
 
 ## Deploy
 
-Merging to `main` runs `.github/workflows/deploy.yml`, which builds the site and uploads `dist/` to the Namecheap host over rsync/SSH. Automatic deploys on push are enabled by the `DEPLOY_ENABLED` repository variable; the workflow can also be run by hand, with a dry run by default.
+Merging to `main` runs `.github/workflows/deploy.yml`, which builds the site and deploys `dist/` from `main` through the GitHub "production" environment, using an upload key the server only accepts for writing into the site folder. Automatic deploys on push are enabled by the `DEPLOY_ENABLED` repository variable; the workflow can also be run by hand, with a dry run by default.
