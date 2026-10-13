@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { MapPin, Mail, Instagram, Linkedin } from "lucide-react";
-import reefLogoPath from "@/assets/reef-logo.png";
+import reefLogoPath from "@/assets/reef-logo-borderless.png";
 
 export function Footer() {
   return (
@@ -10,26 +10,25 @@ export function Footer() {
           
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-               <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+               <div className="w-12 h-12 md:w-16 md:h-16 xl:w-20 xl:h-20 shrink-0 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     src={reefLogoPath}
                     alt="REEF Logo"
                     className="w-full h-full object-contain"
                   />
                 </div>
-              <span className="font-heading font-bold text-2xl tracking-tight text-white">
-                REEF
+              <span className="font-heading font-bold text-sm leading-tight tracking-tight text-white max-w-[180px]">
+                Roundtable of Entrepreneurship Educators of Florida
               </span>
             </div>
             <p className="text-white/90 text-sm mb-6 leading-relaxed">
-              Roundtable of Entrepreneurship Educators of Florida, Inc.<br/>
               A Florida Not-For-Profit Corporation.
             </p>
             <div className="flex gap-4">
               <a href="https://instagram.com/reefflorida" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="https://www.linkedin.com/company/reef-florida" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/company/reefcenter" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
                 <Linkedin size={20} />
               </a>
             </div>
@@ -52,7 +51,7 @@ export function Footer() {
                 <MapPin className="mt-1 shrink-0 text-accent" size={20} />
                 <span className="leading-relaxed">
                   Daveler and Kauanui School of Entrepreneurship<br/>
-                  Lucas Hall 125<br/>
+                  Lucas Hall 126<br/>
                   10501 FGCU Boulevard South<br/>
                   Fort Myers, FL 33965
                 </span>
@@ -67,7 +66,10 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-white/80 text-sm">
-          <p>&copy; {new Date().getFullYear()} REEF. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Roundtable of Entrepreneurship
+            Educators of Florida. All rights reserved.
+          </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
