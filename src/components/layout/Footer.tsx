@@ -68,7 +68,7 @@ export function Footer() {
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-white/80 text-sm">
           <p>
             &copy; {new Date().getFullYear()} Roundtable of Entrepreneurship
-            Educators of Florida. All rights reserved.
+            Educators of Florida Inc. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
