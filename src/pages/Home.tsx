@@ -236,7 +236,7 @@ export default function Home() {
               variants={fadeInUp}
               className="relative"
             >
-              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
                 <img
                   src={heroBgLarge}
                   srcSet={`${heroBgSmall} 800w, ${heroBgLarge} 1408w`}
