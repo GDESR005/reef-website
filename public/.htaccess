@@ -2,6 +2,9 @@
   RewriteEngine On
   RewriteBase /
 
+  # The share image was renamed; send link previews cached with the old name to the new one
+  RewriteRule ^opengraph\.jpg$ /og-image.jpg [R=301,L]
+
   # Let PHP files through
   RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule \.php$ - [L]
