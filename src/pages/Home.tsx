@@ -173,7 +173,7 @@ export default function Home() {
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <Button 
                   size="lg" 
-                  className="w-full sm:w-auto h-14 px-8 bg-accent hover:bg-accent/90 text-white text-lg font-bold rounded-full shadow-[0_0_40px_-10px_rgba(255,107,53,0.5)] transition-all hover:scale-105"
+                  className="w-full sm:w-auto h-14 px-8 bg-accent hover:bg-accent/90 text-white text-lg font-bold rounded-full shadow-[0_0_40px_-10px_hsl(var(--accent)/0.5)] transition-all hover:scale-105"
                   onClick={() => scrollTo('#contact')}
                 >
                   Join REEF
